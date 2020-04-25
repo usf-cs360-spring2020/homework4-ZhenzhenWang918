@@ -119,13 +119,13 @@
         <h2>Dataset</h2>
         <p>I used the publicly-available <a href=https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3>SF Fire department Dataset</a>, 
           group by Unit Type, Call type Group and Call type and to to arrive at a total of <b>150</b> records.</p>
-        <p>The encampment data was retrived using DataSF's SODA API endpoint, using the following URL to filter for month and category:</p>
+        <p>This hierarchical formal can be interpreted by:</p>
         <ul>
         <li> var stratify = d3.stratify()
-          .parentId(function (d) { return d.path.substring(0, d.path.lastIndexOf("_")); });</li></ul>
-        <ul><li><a href="https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2020-02-01T00:00:00' and '2020-03-01T00:00:00' and service_name = 'Encampments'&$limit=100000">https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2020-02-01T00:00:00' and '2020-03-01T00:00:00' and service_name = 'Encampments'&$limit=100000</a></li></ul>
-        <p>Geolocation data for the neighborhoods was retrived from <a href="https://data.sfgov.org/Geographic-Locations-and-Boundaries/SF-Find-Neighborhoods/pty2-tcw4">SF Find</a> tool's dataset.</p>
-
+          .parentId(function (d) { return d.path.substring(0, d.path.lastIndexOf("_")); });</li>
+          <li>more details, please see data wrangling</li>
+        </ul>
+       
         <h2>Wrangling</h2>
       
         <p>
@@ -143,15 +143,14 @@
 
         <h2>Encoding</h2>
         
-        <p>Neighborhoods is shaded according to the density of encampment records per square mile, using a log scale to enhance contrast. Detailed information per neighborhood is displayed in the info box at the top left of the visualization.</p>
+        <p>Under the root, first layer is Unit Type. The second layer is Call group type. Third layer is call type.</p>
 
         <h2>Interactivity</h2>
         
-        <p>Hover over a neighborhood to see its case statistics, in absolute count and normalized per square mile. Drag to pan, and use mouse wheel to zoom.</p>
+        <p></p>
 
         <h2>Conclusion</h2>
-        <p>Not surprisingly, the encampment volume was highest in the denser neighborhoods near the city's downtown, as well as lower-income neighborhoods like the Tenderloin and Mission. This is also consistent with my personal observation of the incidence of homeless tents having walked through these areas.
-            This map could be used to prioritize long-term policy changes to address the issue of encampments.
+        <p>
         </p>
 
         <h2>Attribution</h2>
