@@ -26,7 +26,7 @@
         <!-- TODO: Change title -->
         <h1 class="title">Hierarchical Visualization</h1>
         <!-- TODO: Change subtitle -->
-        <h2 class="subtitle">of Encampment Reports in San Francisco in February 2020</h2>
+        <h2 class="subtitle"> About Fire Departmment Calls in San Francisco in 2019</h2>
       </div>
     </div>
   </section>
@@ -93,10 +93,23 @@
         </p>
       </br>
 
-        <p>The following is a visualization showing a hierarchy of fire call types in San Francisco.
+        <p>The following is a traditional hierarchical layout and treemap showing incidents numbers of different call types in San Francisco in 2019.
         </p>
        <figure>
-        <div id="vis"></div>
+        <div id="vis"><span id="info"></span><svg width="960" height="500">
+            <g id="basemap"></g>
+
+            <!-- turn off pointer events for certain groups -->
+            <g id="streets" pointer-events="none"></g>
+            <g id="outline" pointer-events="none"></g>
+
+            <g id="encampments"></g>
+            <g id="tooltip" pointer-events="none"></g>
+            <g id="details" pointer-events="none"></g>
+        </svg></div>
+        <figcaption>
+            Source: <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783">SF 311 Dataset: February 2020</a>
+          </figcaption>
         </figure>
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="vis.js"></script>
@@ -104,10 +117,29 @@
 
         
         <h2>Dataset</h2>
-        <p>I used the publicly-available <a href="https://data.sfgov.org/City-Infrastructure/311-Cases/vw6y-z8j6">SF 311 Dataset</a>, filtering to February 2020 and to only the encampment category to arrive at a total of <b>6182</b> records.</p>
+        <p>I used the publicly-available <a href=https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3>SF Fire department Dataset</a>, 
+          group by Unit Type, Call type Group and Call type and to to arrive at a total of <b>150</b> records.</p>
         <p>The encampment data was retrived using DataSF's SODA API endpoint, using the following URL to filter for month and category:</p>
+        <ul>
+        <li> var stratify = d3.stratify()
+          .parentId(function (d) { return d.path.substring(0, d.path.lastIndexOf("_")); });</li></ul>
         <ul><li><a href="https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2020-02-01T00:00:00' and '2020-03-01T00:00:00' and service_name = 'Encampments'&$limit=100000">https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2020-02-01T00:00:00' and '2020-03-01T00:00:00' and service_name = 'Encampments'&$limit=100000</a></li></ul>
         <p>Geolocation data for the neighborhoods was retrived from <a href="https://data.sfgov.org/Geographic-Locations-and-Boundaries/SF-Find-Neighborhoods/pty2-tcw4">SF Find</a> tool's dataset.</p>
+
+        <h2>Wrangling</h2>
+      
+        <p>
+        </ul>
+        <ol>
+            <li> First, I went onto the Fire Department Calls for Service dataset and grouped columns by Unit Type, 
+              then Call Type Group, then Call Type hierarchically, using the number of rows as the measure.
+               Rows with null for any of these columns were discarded prior to grouping.</li>
+            <li> Next, I took the 50 categories
+               with the highest count and discarded the remaining groups.</li>
+            <li> Finally, I converted the category hierarchy into a path (using underscore as delimiter) so that d3.stratify() can treat each row as a unique node when building the hierarchy. The child-parent relationships exist from Call Type to Call Type Group, as well as Call Type Group to Unit Type. All the Unit Types were also assigned a placeholder origin node to form the root of the tree.</li>
+            
+        </ol>
+        </p>
 
         <h2>Encoding</h2>
         
@@ -116,9 +148,6 @@
         <h2>Interactivity</h2>
         
         <p>Hover over a neighborhood to see its case statistics, in absolute count and normalized per square mile. Drag to pan, and use mouse wheel to zoom.</p>
-
-        <h2>Wrangling</h2>
-        <p>The above dataset JSON was directly loaded into JavaScript with no additional processing, as JSON is naturally compatible with JavaScript.
 
         <h2>Conclusion</h2>
         <p>Not surprisingly, the encampment volume was highest in the denser neighborhoods near the city's downtown, as well as lower-income neighborhoods like the Tenderloin and Mission. This is also consistent with my personal observation of the incidence of homeless tents having walked through these areas.
@@ -160,8 +189,11 @@
                 <td>
                   <p>This grade requirements has been successfully completed as:</p>
                   <ul>
-                      <li>Implement choropleth map with d3v5 successfully</li>
-                      <li>Pan and zoom interactivity</li>
+                    <li>Successfully wrangling data into a hierarchical format</li>
+                      <li>Implement a node link visualization using d3.tree() successfully</li>
+                      <li>Implement a space-filling visualization using d3.treemap() successfully</li>
+                      <li>brushing interactive</li> 
+                      
                     
                   </ul>
                 </td>
