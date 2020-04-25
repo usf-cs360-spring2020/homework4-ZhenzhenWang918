@@ -1,0 +1,85 @@
+path,count
+Root,
+Root_Chief,
+Root_Chief_Alarm,
+Root_Chief_Alarm_Alarms,88176
+Root_Chief_Alarm_Gas Leak (Natural and LP Gases),3502
+Root_Chief_Alarm_Structure Fire,41059
+Root_Chief_Fire,
+Root_Chief_Fire_Structure Fire,10302
+Root_Chief_Non Life-threatening,
+Root_Chief_Non Life-threatening_Medical Incident,4055
+Root_Chief_Potentially Life-Threatening,
+Root_Chief_Potentially Life-Threatening_Medical Incident,8348
+Root_Chief_Potentially Life-Threatening_Traffic Collision,3519
+Root_Engine,
+Root_Engine_Alarm,
+Root_Engine_Alarm_Alarms,92366
+Root_Engine_Alarm_Citizen Assist / Service Call,14268
+Root_Engine_Alarm_Electrical Hazard,7750
+Root_Engine_Alarm_Gas Leak (Natural and LP Gases),5863
+Root_Engine_Alarm_Other,12576
+Root_Engine_Alarm_Smoke Investigation (Outside),3897
+Root_Engine_Alarm_Structure Fire,76485
+Root_Engine_Fire,
+Root_Engine_Fire_Outside Fire,20497
+Root_Engine_Fire_Structure Fire,12976
+Root_Engine_Fire_Vehicle Fire,3912
+Root_Engine_Fire_Water Rescue,3923
+Root_Engine_Non Life-threatening,
+Root_Engine_Non Life-threatening_Medical Incident,135289
+Root_Engine_Non Life-threatening_Traffic Collision,17127
+Root_Engine_Potentially Life-Threatening,
+Root_Engine_Potentially Life-Threatening_Medical Incident,471767
+Root_Engine_Potentially Life-Threatening_Traffic Collision,25752
+Root_Medic,
+Root_Medic_Alarm,
+Root_Medic_Alarm_Structure Fire,12423
+Root_Medic_Fire,
+Root_Medic_Fire_Structure Fire,3774
+Root_Medic_Non Life-threatening,
+Root_Medic_Non Life-threatening_Medical Incident,275874
+Root_Medic_Non Life-threatening_Traffic Collision,14765
+Root_Medic_Potentially Life-Threatening,
+Root_Medic_Potentially Life-Threatening_Medical Incident,383010
+Root_Medic_Potentially Life-Threatening_Traffic Collision,18995
+Root_Private,
+Root_Private_Non Life-threatening,
+Root_Private_Non Life-threatening_Medical Incident,104069
+Root_Private_Non Life-threatening_Traffic Collision,4943
+Root_Private_Potentially Life-Threatening,
+Root_Private_Potentially Life-Threatening_Medical Incident,143175
+Root_Private_Potentially Life-Threatening_Traffic Collision,6786
+Root_Rescue captain,
+Root_Rescue captain_Non Life-threatening,
+Root_Rescue captain_Non Life-threatening_Medical Incident,8786
+Root_Rescue captain_Potentially Life-Threatening,
+Root_Rescue captain_Potentially Life-Threatening_Medical Incident,49863
+Root_Rescue captain_Potentially Life-Threatening_Traffic Collision,5289
+Root_Rescue squad,
+Root_Rescue squad_Alarm,
+Root_Rescue squad_Alarm_Structure Fire,11735
+Root_Rescue squad_Potentially Life-Threatening,
+Root_Rescue squad_Potentially Life-Threatening_Medical Incident,15320
+Root_Rescue squad_Potentially Life-Threatening_Traffic Collision,3783
+Root_Support,
+Root_Support_Fire,
+Root_Support_Fire_Water Rescue,3702
+Root_Support_Non Life-threatening,
+Root_Support_Non Life-threatening_Medical Incident,4061
+Root_Support_Potentially Life-Threatening,
+Root_Support_Potentially Life-Threatening_Medical Incident,15317
+Root_Truck,
+Root_Truck_Alarm,
+Root_Truck_Alarm_Alarms,89186
+Root_Truck_Alarm_Citizen Assist / Service Call,13501
+Root_Truck_Alarm_Elevator / Escalator Rescue,6382
+Root_Truck_Alarm_Other,7895
+Root_Truck_Alarm_Structure Fire,61924
+Root_Truck_Fire,
+Root_Truck_Fire_Structure Fire,7111
+Root_Truck_Non Life-threatening,
+Root_Truck_Non Life-threatening_Medical Incident,5498
+Root_Truck_Potentially Life-Threatening,
+Root_Truck_Potentially Life-Threatening_Medical Incident,34051
+Root_Truck_Potentially Life-Threatening_Traffic Collision,4587

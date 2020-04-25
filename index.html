@@ -93,23 +93,10 @@
         </p>
       </br>
 
-        <p>The following is a visualization showing the distribution of 311 calls, specifically encampments, in San Francisco in February 2020.
+        <p>The following is a visualization showing a hierarchy of fire call types in San Francisco.
         </p>
        <figure>
-        <div id="vis"><span id="info"></span><svg width="960" height="500">
-            <g id="basemap"></g>
-
-            <!-- turn off pointer events for certain groups -->
-            <g id="streets" pointer-events="none"></g>
-            <g id="outline" pointer-events="none"></g>
-
-            <g id="encampments"></g>
-            <g id="tooltip" pointer-events="none"></g>
-            <g id="details" pointer-events="none"></g>
-        </svg></div>
-        <figcaption>
-            Source: <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783">SF 311 Dataset: February 2020</a>
-          </figcaption>
+        <div id="vis"></div>
         </figure>
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="vis.js"></script>
