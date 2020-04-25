@@ -63,28 +63,12 @@ function tree(data) {
 }
 color = d3.scaleOrdinal(d3.schemeCategory10)
 
-function sumBySize(d) {
-    return d.count;
-}
-
 function treemap(data) {
-    var tm = d3.treemap()
+    var root = d3.treemap()
         .tile(d3.treemapSquarify)
         .size([width, height])
         .padding(1)
-        .round(true);
-
-    // var root =
-        // .eachBefore(function(d) { d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data; })
-
-    // .sort(function(a, b) { return b.height - a.height || b.value - a.value; });
-    var root = tm(
-        stratify(data)
-        // d3.hierarchy(stratify(data))
-        .sum(sumBySize)
-        // .sort(function(a, b) { return b.height - a.height || b.value - a.value; })
-        );
-console.log(root.leaves);
+        .round(true)(stratify(data).sum(d => d.count));
     svg = d3.select("#vis2").append("svg")
         .attr("viewBox", [0, 0, width, height])
 
@@ -92,8 +76,8 @@ console.log(root.leaves);
         .data(root.leaves())
         .join("g")
         .attr("transform", function (d) {
-            // console.log(d)
-            return "translate(" + d.x0 + "," + d.y0 + ")"; });
+            return "translate(" + d.x0 + "," + d.y0 + ")";
+        });
 
     cell.append("rect")
         .attr("id", function (d) { return d.id; })
@@ -107,18 +91,53 @@ console.log(root.leaves);
         .attr("xlink:href", function (d) { return "#" + d.id; });
 
     cell.append("text")
+        .attr("id", function (d) { return "t" + d.id; })
         .attr("clip-path", function (d) { return "url(#clip-" + d.id.replace(/\W/g, '') + ")"; })
         .selectAll("tspan")
         .data(function (d) {
-             return d.id.split(/_/g).slice(1); })
+            return (d.id.split(/_/g).concat([d.value + " Incidents"])).slice(1);
+        })
         .enter().append("tspan")
         .attr("x", 4)
         .attr("y", function (d, i) { return 13 + i * 10; })
         .text(function (d) { return d; })
-        .attr("font-size", 10);
+        .attr("font-size", 10)
+        .attr("pointer-events", "none");
 
-    cell.append("title")
-        .text(function (d) { return d.id + "\n" + d.count; });
+    var bars = d3.select("#vis2").selectAll("g").selectAll("rect");
+
+    const tip = d3.select("body").append("div").attr("id", "tooltip");
+    tip.style("padding", "9px")
+        .style("background", "#fff")
+        .style("border", "3px solid #999")
+        .style("border-radius", "10px")
+        .style("visibility", "hidden")
+        .style("position", "absolute");
+
+    bars.on("mouseenter.brush1", function (d) {
+        bars.filter(e => (d.id !== e.id))
+            .transition()
+            .style("fill-opacity", "0.4");
+
+    });
+    bars.on("mousemove.brush1", function (d) {
+        var props = d.id.split(/_/g).slice(1);
+        var html = 'Unit type: ' + props[0];
+        html += '<br /> &nbsp; &#x21b3; Call type group: ' + props[1];
+        html += '<br /> &nbsp; &nbsp; &#x21b3; Call type: ' + props[2];
+        tip.html(html + "<br /><b>" + d.value + " Incidents</b>");
+
+        tip.style("visibility", "visible")
+            .style("left", (d3.event.pageX + 10) + "px")
+            .style("top", (d3.event.pageY - 10) + "px")
+    });
+
+    bars.on("mouseleave.brush1", function (d) {
+        bars.transition()
+            .style("fill-opacity", "1");
+
+        tip.style("visibility", "hidden");
+    });
 }
 
 d3.csv("data_wrangled.csv").then(function (data) {
