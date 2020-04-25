@@ -64,7 +64,7 @@ function tree(data) {
 color = d3.scaleOrdinal(d3.schemeCategory10)
 
 function sumBySize(d) {
-    return d.data.count;
+    return d.count;
 }
 
 function treemap(data) {
@@ -74,41 +74,51 @@ function treemap(data) {
         .padding(1)
         .round(true);
 
-    var root = d3.hierarchy(stratify(data))
+    // var root =
         // .eachBefore(function(d) { d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data; })
-        .sum(sumBySize)
-    // .sort(function(a, b) { return b.height - a.height || b.value - a.value; });
-    root = tm(root);
 
+    // .sort(function(a, b) { return b.height - a.height || b.value - a.value; });
+    var root = tm(
+        stratify(data)
+        // d3.hierarchy(stratify(data))
+        .sum(sumBySize)
+        // .sort(function(a, b) { return b.height - a.height || b.value - a.value; })
+        );
+console.log(root.leaves);
     svg = d3.select("#vis2").append("svg")
+        .attr("viewBox", [0, 0, width, height])
 
     var cell = svg.selectAll("g")
         .data(root.leaves())
-        .enter().append("g")
-        .attr("transform", function (d) { return "translate(" + d.x0 + "," + d.y0 + ")"; });
+        .join("g")
+        .attr("transform", function (d) {
+            // console.log(d)
+            return "translate(" + d.x0 + "," + d.y0 + ")"; });
 
     cell.append("rect")
-        .attr("id", function (d) { return d.data.id; })
+        .attr("id", function (d) { return d.id; })
         .attr("width", function (d) { return d.x1 - d.x0; })
         .attr("height", function (d) { return d.y1 - d.y0; })
-        .attr("fill", function (d) { return color(d.parent.data.id); })
+        .attr("fill", function (d) { return color(d.parent.parent.id); })
 
     cell.append("clipPath")
-        .attr("id", function (d) { return "clip-" + d.data.id; })
+        .attr("id", function (d) { return "clip-" + d.id.replace(/\W/g, ''); })
         .append("use")
-        .attr("xlink:href", function (d) { return "#" + d.data.id; });
+        .attr("xlink:href", function (d) { return "#" + d.id; });
 
     cell.append("text")
-        .attr("clip-path", function (d) { return "url(#clip-" + d.data.id + ")"; })
+        .attr("clip-path", function (d) { return "url(#clip-" + d.id.replace(/\W/g, '') + ")"; })
         .selectAll("tspan")
-        .data(function (d) { return d.data.id.split(/_/g); })
+        .data(function (d) {
+             return d.id.split(/_/g).slice(1); })
         .enter().append("tspan")
         .attr("x", 4)
         .attr("y", function (d, i) { return 13 + i * 10; })
-        .text(function (d) { return d; });
+        .text(function (d) { return d; })
+        .attr("font-size", 10);
 
     cell.append("title")
-        .text(function (d) { return d.data.id + "\n" + d.data.count; });
+        .text(function (d) { return d.id + "\n" + d.count; });
 }
 
 d3.csv("data_wrangled.csv").then(function (data) {

@@ -89,7 +89,7 @@
         </h1>
         <p class="subtitle">
           <!-- TODO: Change page subtitle -->
-          
+
         </p>
       </br>
 
@@ -108,9 +108,9 @@
         <script src="vis.js"></script>
         <p></p>
 
-        
+
         <h2>Dataset</h2>
-        <p>I used the publicly-available <a href=https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3>SF Fire department Dataset</a>, 
+        <p>I used the publicly-available <a href=https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3>SF Fire department Dataset</a>,
           group by Unit Type, Call type Group and Call type and to to arrive at a total of <b>150</b> records.</p>
         <p>This hierarchical formal can be interpreted by:</p>
         <ul>
@@ -118,13 +118,13 @@
           .parentId(function (d) { return d.path.substring(0, d.path.lastIndexOf("_")); });</li>
           <li>more details, please see data wrangling</li>
         </ul>
-       
+
         <h2>Wrangling</h2>
-      
+
         <p>
         </ul>
         <ol>
-            <li> First, I went onto the Fire Department Calls for Service dataset and grouped columns by Unit Type, 
+            <li> First, I went onto the Fire Department Calls for Service dataset and grouped columns by Unit Type,
               then Call Type Group, then Call Type hierarchically, using the number of rows as the measure.
                Rows with null for any of these columns were discarded prior to grouping.</li>
             <li> Next, I took the 50 categories
@@ -135,14 +135,14 @@
         </p>
 
         <h2>Encoding</h2>
-        
-        <p>The hierarchical format is like this: under the root, first layer is Unit Type, the second layer is Call group type and the third layer is Call Type Then 
+
+        <p>The hierarchical format is like this: under the root, first layer is Unit Type, the second layer is Call type group and the third layer is Call Type Then 
           under different incident type, it shows total incident numbers. 
         </p>
 
         <h2>Interactivity</h2>
-        
-        <p></p>
+
+        <p>Hover over each cell in the tree map to see the detail in full.</p>
 
         <h2>Conclusion</h2>
         <p>
@@ -151,7 +151,7 @@
         </p>
 
         <h2>Attribution</h2>
-        
+
         <p>
         <p>
           <a href="https://observablehq.com/@d3/tidy-tree">Tree</a><br/>
@@ -191,9 +191,9 @@
                     <li>Successfully wrangling data into a hierarchical format</li>
                       <li>Implement a node link visualization using d3.tree() successfully</li>
                       <li>Implement a space-filling visualization using d3.treemap() successfully</li>
-                      <li>brushing interactive</li> 
-                      
-                    
+                      <li>brushing interactive</li>
+
+
                   </ul>
                 </td>
               </tr>
@@ -224,7 +224,7 @@
 
               <!-- TODO: Replace with brief biography -->
               <p>
-                My name is Zhenzhen Wang. I come from China. I feel really lucky that I can study computer science in USF. I have three courses this semester: data structures, C, and data visualization. It's full of challenges but I am excited to learn all of them. 
+                My name is Zhenzhen Wang. I come from China. I feel really lucky that I can study computer science in USF. I have three courses this semester: data structures, C, and data visualization. It's full of challenges but I am excited to learn all of them.
                 Because I think these courses will help me build good foundation for further studying.
               </p>
 
